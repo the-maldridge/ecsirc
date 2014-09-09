@@ -1,0 +1,4 @@
+---
+hostname: ecsirc
+ip_address: 10.176.67.40
+interface: eth0

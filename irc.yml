@@ -1,0 +1,6 @@
+---
+- hosts: irc
+  sudo: yes
+  roles:
+  - common
+  - inspircd

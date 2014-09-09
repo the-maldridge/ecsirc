@@ -1,0 +1,23 @@
+---
+- name: Configure firewall for InspIRCd
+  copy: src=inspircd.rules dest=/etc/iptables.d/
+  notify:
+  - iptables
+- name: Configure monit for InspIRCd
+  copy: src=monit dest=/etc/monit/conf.d/inspircd
+  notify:
+  - monit
+- name: Copy InspIRCd build artifacts
+  copy: src=inspircd dest=/opt/
+  notify:
+  - inspircd
+- name: Configure InspIRCd
+  copy: src=secret/inspircd/conf dest=/opt/inspircd/
+  notify:
+  - inspircd
+- name: Make data directory
+  file: path=/opt/inspircd/data state=directory owner=irc group=irc mode=0640
+- name: Add InspIRCd init script
+  copy: src=service dest=/etc/init.d/inspircd
+- name: Start InspIRCd
+  service: name=inspircd state=started enabled=yes
