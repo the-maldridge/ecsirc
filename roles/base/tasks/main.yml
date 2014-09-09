@@ -25,11 +25,8 @@
   file: path=/etc/motd state=absent
 - name: Set apt sources
   copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=0644
-- name: Install common packages
-  apt: pkg={{ item }} state=present update_cache=yes
-  with_items:
-  - ethtool
-  - ntp
+- name: Install ntpd packages
+  apt: pkg=ntp state=present update_cache=yes
 - name: Configure ntpd
   copy: src=ntp.conf dest=/etc/ntp.conf
   notify:
