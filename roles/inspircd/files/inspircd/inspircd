@@ -32,6 +32,7 @@ my $valgrindlogpath	=	"$basepath/valgrindlogs";
 my $executable	=	"inspircd";
 my $version	=	"InspIRCd-2.0.14(r0)";
 my $uid = "irc";
+my $gid = "irc";
 
 if ($< == 0 || $> == 0) {
 	if ($uid !~ /^\d+$/) {
@@ -41,10 +42,22 @@ if ($< == 0 || $> == 0) {
 	if (!$uid) {
 		die "Cannot find a valid UID to change to";
 	}
+	if ($gid !~ /^\d+$/) {
+		# Named GID, look it up
+		$gid = getgrnam $gid;
+	}
+	if (!$gid) {
+		die "Cannot find a valid GID to change to";
+	}
 	# drop root if we were configured with an ircd UID
+	$( = $gid;
+	$) = $gid;
 	$< = $uid;
 	$> = $uid;
 	if ($< == 0 || $> == 0) {
+		die "Could not drop root: $!";
+	}
+	if ($( == 0 || $) == 0) {
 		die "Could not drop root: $!";
 	}
 }
