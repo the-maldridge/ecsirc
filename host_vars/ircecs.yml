@@ -1,4 +1,4 @@
 ---
-hostname: ecsirc
+hostname: ircecs.utdallas.edu
 ip_address: 10.176.67.40
 interface: eth0
