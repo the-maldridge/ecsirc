@@ -1,7 +1,6 @@
 auto lo {{ interface }}
 iface lo inet loopback
 
-{% endif %}
 allow-hotplug {{ interface }}
 iface {{ interface }} inet static
         address {{ ip_address }}
