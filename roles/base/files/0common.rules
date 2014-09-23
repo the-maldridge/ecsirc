@@ -12,8 +12,8 @@
 -A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -p icmp -j ACCEPT
 # DNS
--A OUTPUT -p udp -d 192.168.42.0/30 --dport 53 -j ACCEPT
--A OUTPUT -p tcp -d 192.168.42.0/30 --dport 53 -j ACCEPT
+-A OUTPUT -p udp -d 10.182.70.107 --dport 53 -j ACCEPT
+-A OUTPUT -p tcp -d 10.182.70.107 --dport 53 -j ACCEPT
 # NTP (time.utdallas.edu)
 -A OUTPUT -p udp -d 10.182.70.112 --dport 123 -j ACCEPT
 -A OUTPUT -p udp -d 10.180.15.165 --dport 123 -j ACCEPT
