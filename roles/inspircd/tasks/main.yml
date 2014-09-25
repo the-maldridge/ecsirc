@@ -27,5 +27,9 @@
   file: path=/opt/inspircd/data state=directory owner=irc group=irc mode=0750
 - name: Add InspIRCd init script
   copy: src=service dest=/etc/init.d/inspircd owner=root group=root mode=0755
+- name: Make InspIRCd log dir exist
+  file: path=/opt/inspircd/logs state=directory owner=irc group=irc mode=0750
+- name: Install blank persistent channels file
+  file: path=/opt/inspircd/data/permchannels.conf state=touch owner=irc group=irc mode=0640
 - name: Start InspIRCd
   service: name=inspircd state=started enabled=yes
